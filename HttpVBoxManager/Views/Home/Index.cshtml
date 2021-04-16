@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center container">
+    <h1 class="display-4">Http vBoxManage!</h1>
+    <p>Choose one!</p>
+
+    <p style="font-weight:bold">Type your command in url</p>
+    <div style="text-align:start">
+        <p>
+            1) /status/GetVmsStatus => get status vms
+        </p>
+        <p>
+            2) /status/GetVmStatus/{nameofvm} => get status a vm
+        </p>
+        <p>
+            3) /workwithvms/StartVM/{name} => startvm
+        </p>
+        <p>
+            4) /workwithvms/PowerOffVM/{name} => PowerOffVM
+        </p>
+
+        <p>
+            5) /workwithvms/modifyvm/{name}/{cpu}/{memory} => modify setting of vm
+        </p>
+        <p>
+            6) /workwithvms/cloneVM/{sname}/{dname} => clone vm
+        </p>
+
+        <p>
+            7) /workwithvms/DeleteVM/{name} => delete vm
+        </p>
+        <p>
+            8) /ExecuteCommandVM/{sname}/{userName}/{password}/{command} => run commands in vm
+        </p>
+        <p>
+            9) /sendfileFromHostToVM/{sname}/{hostPath}/{userName}/{password}/{vmPath} => send file from host to vm
+        </p>
+        <p>
+            10) /sendfileFromVmToVM/{sname}/{hostPath}/{userName}/{password}/{dname} => send file from vm to vm
+        </p>
+    </div>
+   
+
+
+</div>
