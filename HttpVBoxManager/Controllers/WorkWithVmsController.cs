@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using HttpVBoxManager.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,21 @@ namespace HttpVBoxManager.Controllers
     [Route("[controller]")]
     public class WorkWithVmsController : Controller
     {
+        public WorkWithVmsController()
+        {
+            CmdLinker.ErrorReceived += CmdLinker_ErrorReceived;
+        }
+
+        private void CmdLinker_ErrorReceived(string obj)
+        {
+            if (obj != null)
+            {
+                Console.WriteLine("/////////////////////////");
+                Console.WriteLine(obj);
+                Console.WriteLine("////////////////////////");
+            }
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -23,7 +39,10 @@ namespace HttpVBoxManager.Controllers
             string vm = Services.CmdLinker.startVM(name);
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             keyValuePairs.Add(name, vm);
-            return Json(keyValuePairs);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(keyValuePairs);
         }
 
 
@@ -33,7 +52,10 @@ namespace HttpVBoxManager.Controllers
             string vm = Services.CmdLinker.PowerOffVM(name);
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             keyValuePairs.Add(name, "Powering Off");
-            return Json(keyValuePairs);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(keyValuePairs);
         }
 
         [HttpGet("modifyvm/{name}/{cpu}/{memory}")]
@@ -41,8 +63,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.ModifyVM(name, cpu, memory);
             string a = "{command: setting, vmName: " + name + ",cpu: " + cpu + ",memory: " + memory + " ,status:  OK" + " }";
-
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
         [HttpGet("cloneVM/{sname}/{dname}")]
@@ -50,7 +74,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.CloneVM(sname, dname);
             string a = "{command: clone, vm1: " + sname + ", vm2: " + dname + " ,status:  OK" + " }";
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
         [HttpGet("DeleteVM/{sname}")]
@@ -58,7 +85,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.DeleteVM(sname);
             string a = "{command: delete, vmName: " + sname + " ,status:  OK" + " }";
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
 
@@ -67,7 +97,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.ExecuteCommandVM(sname, userName, password, command);
             string a = "{command: execute, vmName: " + sname + " ,status:  OK" + ",response " + vm + " }";
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
         [HttpGet("sendfileFromHostToVM/{sname}/{hostPath}/{userName}/{password}/{vmPath}")]
@@ -75,7 +108,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.sendfileFromHostToVM(sname, hostPath, vmPath, userName, password);
             string a = "{command: transfer, OriginVM: " + sname + " ,originPath: " + hostPath + " ,status:  OK" + ",response " + vm + " }";
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
         [HttpGet("sendfileFromVmToVM/{sname}/{hostPath}/{userName}/{password}/{dname}")]
@@ -83,7 +119,10 @@ namespace HttpVBoxManager.Controllers
         {
             string vm = Services.CmdLinker.sendfileFromVmToVM(sname, hostPath, vmPath, userName, password, dname);
             string a = "{command: transfer, OriginVM: " + sname + " ,originPath: " + hostPath + " ,destVM: " + dname + ",destPath: " + vmPath + " ,status:  OK" + ",response " + vm + " }";
-            return Json(a);
+            if (CmdLinker.ErrMessage != "")
+                return Json(CmdLinker.ErrMessage);
+            else
+                return Json(a);
         }
 
     }

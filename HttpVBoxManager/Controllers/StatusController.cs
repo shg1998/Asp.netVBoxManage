@@ -32,11 +32,7 @@ namespace HttpVBoxManager.Controllers
             string vm = Services.CmdLinker.getVmStatus(name);
             Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
             keyValuePairs.Add(name, vm);
-
             return Json(keyValuePairs);
         }
-
-
-
     }
 }

@@ -2,7 +2,7 @@
 
 namespace HttpVBoxManager.Data.Migrations
 {
-    public partial class AspnetHttpVBoxManagerDB : Migration
+    public partial class salamMigrate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

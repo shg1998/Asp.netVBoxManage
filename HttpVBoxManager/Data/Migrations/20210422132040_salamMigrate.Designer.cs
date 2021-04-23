@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HttpVBoxManager.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210413012157_AspnetHttpVBoxManagerDB")]
-    partial class AspnetHttpVBoxManagerDB
+    [Migration("20210422132040_salamMigrate")]
+    partial class salamMigrate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

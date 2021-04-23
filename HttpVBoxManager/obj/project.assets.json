@@ -8762,11 +8762,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\H3\\Desktop\\Project\\Asp.net\\CloudComputing\\HttpVBoxManager\\HttpVBoxManager\\HttpVBoxManager.csproj",
+      "projectUniqueName": "C:\\Users\\H3\\Desktop\\CC_Hw01_9633090\\HttpVBoxManager\\HttpVBoxManager\\HttpVBoxManager.csproj",
       "projectName": "HttpVBoxManager",
-      "projectPath": "C:\\Users\\H3\\Desktop\\Project\\Asp.net\\CloudComputing\\HttpVBoxManager\\HttpVBoxManager\\HttpVBoxManager.csproj",
+      "projectPath": "C:\\Users\\H3\\Desktop\\CC_Hw01_9633090\\HttpVBoxManager\\HttpVBoxManager\\HttpVBoxManager.csproj",
       "packagesPath": "C:\\Users\\H3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\H3\\Desktop\\Project\\Asp.net\\CloudComputing\\HttpVBoxManager\\HttpVBoxManager\\obj\\",
+      "outputPath": "C:\\Users\\H3\\Desktop\\CC_Hw01_9633090\\HttpVBoxManager\\HttpVBoxManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

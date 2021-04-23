@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20210413011824_HttpVBoxManageDB.cs" />
     <Compile Remove="Data\Migrations\20210413011824_HttpVBoxManageDB.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210413012157_AspnetHttpVBoxManagerDB.cs" />
+    <Compile Remove="Data\Migrations\20210413012157_AspnetHttpVBoxManagerDB.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

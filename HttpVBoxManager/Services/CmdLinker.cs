@@ -8,11 +8,26 @@ namespace HttpVBoxManager.Services
 {
     public static class CmdLinker
     {
+        public static event Action<string> ErrorReceived;
+        private static string _errMessage;
+        public static string ErrMessage
+        {
+            get
+            {
+                return _errMessage;
+            }
+            set
+            {
+                _errMessage = value;
+                ErrorReceived(value);
+
+            }
+        }
         private static string CMDHelper(string command)
         {
             System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo
             {
-                WorkingDirectory = @"C:\Program Files\Oracle\VirtualBox",
+                WorkingDirectory = @"F:\Oracle",
                 WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal,
                 FileName = "cmd.exe",
                 RedirectStandardInput = true,
@@ -22,11 +37,13 @@ namespace HttpVBoxManager.Services
 
             var commandexec = new Process { StartInfo = startInfo };
             commandexec.StartInfo.RedirectStandardOutput = true;
+            commandexec.StartInfo.RedirectStandardError = true;
             commandexec.Start();
 
             commandexec.WaitForExit();
 
             var result = commandexec.StandardOutput.ReadToEnd();
+            ErrMessage = commandexec.StandardError.ReadToEnd();
             return result.ToString();
         }
         public static Dictionary<string, string> AllDevsStatus()
